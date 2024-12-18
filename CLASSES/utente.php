@@ -4,15 +4,17 @@
         private $nome;
         private $cognome;
         private $mail;
+        private $password;
         private $foto_profilo;
         private $residenza;
 
-        function __construct($id_utente,$nome,$cognome,$mail,$foto_profilo,$residenza)
+        function __construct($id_utente,$nome,$cognome,$mail,$password,$foto_profilo,$residenza)
         {
             $this->id_utente = (int)$id_utente;
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->mail = $mail;
+            $this->password = $password;
             $this->foto_profilo = $foto_profilo;
             $this->residenza = $residenza;
         }
@@ -20,6 +22,13 @@
         function toCsv()
         {
             return $this->id_utente.";".$this->nome.";".$this->cognome.";".$this->mail.";".$this->foto_profilo.";".$this->residenza;
+        }
+
+        function isEqual($mail, $password)
+        {
+            if($mail == $this->mail && $password == $this->password)
+                return true;
+            return false;
         }
 
         function setId_utente($id_utente)
@@ -64,6 +73,10 @@
         function getMail()
         {
             return $this->mail;
+        }
+        function getPassword()
+        {
+            return $this->password;
         }
         function getFoto_profilo()
         {

@@ -12,7 +12,10 @@
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
-                $utenti[] = new utente($riga[0],$riga[1],$riga[2],$riga[3],$riga[4],$riga[5]);
+            {                
+                $campi = explode( ";",$riga);
+                $utenti[] = new utente($campi[0],$campi[1],$campi[2],$campi[3],$campi[4],$campi[5],$campi[6]);
+            }
         }
         return $utenti;
     }
@@ -25,7 +28,10 @@
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
-                $prodotti[] = new prodotto($riga[0],$riga[1],$riga[2],$riga[3],$riga[4],$riga[5],$riga[6]);
+            {
+                $campi = explode( ";",$riga);
+                $prodotti[] = new prodotto($campi[0],$campi[1],$campi[2],$campi[3],$campi[4],$campi[5],$campi[6]);
+            }
         }
         return $prodotti;
     }
@@ -37,7 +43,10 @@
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
-                $foto[] = new foto($riga[0],$riga[1]);
+            {
+                $campi = explode( ";",$riga);
+                $foto[] = new foto($campi[0],$campi[1]);
+            }
         }
         return $foto;
     }
@@ -49,7 +58,10 @@
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
-                $categorie[] = new categoria($riga[0],$riga[1]);
+            {
+                $campi = explode( ";",$riga);
+                $categorie[] = new categoria($campi[0],$campi[1]);
+            }
         }
         return $categorie;
     }
@@ -89,5 +101,10 @@
                 $prodotti[] = $prodotto;
         }
         return $prodotti;
+    }
+
+    function addUtente($utente)
+    {
+        return file_put_contents("../CSV/utenti.csv",$utente."\r\n",FILE_APPEND);
     }
 ?>
