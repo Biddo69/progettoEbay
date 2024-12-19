@@ -66,7 +66,7 @@
         return $categorie;
     }
 
-    function getNextId_utente()     //DA RIVEDERE
+    function getNextId_utente()    
     {
         $utenti = getAllUtenti();
         if(count($utenti) == 0)
@@ -76,9 +76,11 @@
         
     }
 
-    function getNextId_prodotto()     //DA RIVEDERE
+    function getNextId_prodotto()     
     {
         $prodotti = getAllProdotti();
+        if(count($prodotti) == 0)
+            return 0;
         $lastProdotto = $prodotti[count($prodotti) - 1];
         return $lastProdotto->getId_prodotto() + 1;
     }
