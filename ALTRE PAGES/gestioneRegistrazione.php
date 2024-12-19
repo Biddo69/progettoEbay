@@ -17,7 +17,7 @@
 
     //MAGARI ALTRI CONTROLLI
 
-    if($_POST["password"] != $POST["confermaPassword"])
+    if($_POST["password"] != $_POST["confermaPassword"])
     {
         header("Location: ../PAGES/registrati.php?messaggio=le password non corrispondono");
         exit;

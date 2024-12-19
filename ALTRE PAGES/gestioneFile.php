@@ -69,6 +69,8 @@
     function getNextId_utente()     //DA RIVEDERE
     {
         $utenti = getAllUtenti();
+        if(count($utenti) == 0)
+            return 0;
         $lastUtente = $utenti[count($utenti) - 1];
         return $lastUtente->getId_utente() + 1;
         
