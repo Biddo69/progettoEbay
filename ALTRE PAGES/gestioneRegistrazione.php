@@ -34,7 +34,7 @@
     }
 
     //controllo la foto
-    if(isset($_FILES["foto"]))
+    if(isset($_FILES["foto"]) && !isset($_FILES["foto"]["error"]))
     {
         $oldPath = $_FILES["foto"]["tmp_name"];
         $newPath = "../FOTO/".$_FILES["foto"]["name"];

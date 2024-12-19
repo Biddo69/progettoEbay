@@ -21,7 +21,7 @@
 
         function toCsv()
         {
-            return $this->id_utente.";".$this->nome.";".$this->cognome.";".$this->mail.";".$this->foto_profilo.";".$this->residenza;
+            return $this->id_utente.";".$this->nome.";".$this->cognome.";".$this->mail.";".$this->password.";".$this->foto_profilo.";".$this->residenza;
         }
 
         function isEqual($mail, $password)
