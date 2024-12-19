@@ -49,7 +49,7 @@
     $id = getNextId_utente();
     $newUtente = new utente($id,$_POST["nome"],$_POST["cognome"],$_POST["mail"],$_POST["password"],$newPath,$_POST["residenza"]);
     $toCSV = $newUtente->toCsv();
-    if(!addUtente($toCSV))
+    if(!addToFile($pathFileUtenti,$toCSV))
     {
         header("Location: ../PAGES/registrati.php?messaggio=si è verificato un errore durante la registrazione");
         exit;

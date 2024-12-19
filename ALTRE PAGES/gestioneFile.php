@@ -3,6 +3,12 @@
     require_once("../CLASSES/prodotto.php");
     require_once("../CLASSES/foto.php");
     require_once("../CLASSES/categoria.php");
+
+    $pathFileUtenti = "../CSV/utenti.csv";
+    $pathFileProdotti = "../CSV/prodotti.csv";
+    $pathFileCategorie = "../CSV/categorie.csv";
+    $pathFileFoto = "../CSV/foto.csv";
+
     
     //ritorna tutti gli utenti contenuti nel file
     function getAllUtenti()
@@ -107,8 +113,19 @@
         return $prodotti;
     }
 
-    function addUtente($utente)
+   /* function addUtente($utente)
     {
         return file_put_contents("../CSV/utenti.csv",$utente."\r\n",FILE_APPEND);
+    }
+
+    function addProdotto($prodotto)
+    {
+        return file_put_contents("../CSV/prodotti.csv",$prodotto."\r\n",FILE_APPEND);
+    }*/
+
+    function addToFile($path, $contenuto)
+    {
+        return file_put_contents($path,$contenuto."\r\n",FILE_APPEND);
+
     }
 ?>

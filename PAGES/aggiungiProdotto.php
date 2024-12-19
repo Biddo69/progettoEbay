@@ -17,7 +17,7 @@
     <title>Sito compravendita - Aggiunta prodotti</title>
 </head>
 <body>
-    <form action="../ALTRE PAGES/gestioneAggiungiProdotto.php" method="post">
+    <form action="../ALTRE PAGES/gestioneAggiungiProdotto.php" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>Nome: </td> <td><input type="text" name="nome" required></td>
@@ -37,14 +37,14 @@
                 <select name="categoria">
                     <?php
                         foreach ($categorie as $categoria) {
-                            echo '<option value="$categoria->getId()">'.$categoria->getNome().'</option>';
+                            echo '<option value="'.$categoria->getId_categoria().'">'.$categoria->getNome().'</option>';
                         }
 
                     ?>
                 </select>
                 </td>
             </tr>
-                <td>Immagini: </td><td><input type="file" name="immagini" multiple accept=".png,.jpg"></td>
+                <td>Immagini: </td><td><input type="file" name="immagini[]" accept=".png,.jpg" multiple></td>
             </tr>
         </table>
         <button>Invio</button>

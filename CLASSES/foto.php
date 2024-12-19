@@ -17,5 +17,10 @@
         {
             return $this->path;
         }
+
+        function toCSV()
+        {
+            return $this->id_prodotto.";".$this->path;
+        }
     }
 ?>
