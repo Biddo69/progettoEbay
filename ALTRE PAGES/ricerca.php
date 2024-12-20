@@ -23,4 +23,5 @@
     $_SESSION["prodotti"] = $prodotti;
     header("Location: ../PAGES/homepage.php");
     exit;
+    //echo $_POST["categoria"];
 ?>
