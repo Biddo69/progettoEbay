@@ -1,6 +1,16 @@
 <?php
+    require_once("../ALTRE PAGES/gestioneFile.php");
     if(!isset($_SESSION))
         session_start();
+    $categorie = getAllCategorie();
+
+    //controllo se ho effettauto una ricerca
+    if(isset($_SESSION["prodotti"]))
+    {
+        
+        $prodotti = $_SESSION["prodotti"];
+        //print_r($_SESSION["prodotti"]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +21,20 @@
 </head>
 <body>
     Sito <br>
-    <input type="text" name="cerca">
-    <button>Cerca</button> <!-- magari da sostituire con altro -->
+    <form action="../ALTRE PAGES/ricerca.php" method="post">
+        <input type="text" name="cerca">
+        <button>Cerca</button> <!-- magari da sostituire con altro -->
+        <select name="categoria">
+            <option value="">Tutte le categorie</option>
+            <?php
+                foreach ($categorie as $categoria) {
+                    echo '<option value="'.$categoria->getId_categoria().'">'.$categoria->getNome().'</option>';
+                }
 
+            ?>
+        </select>
+    </form>
+    
     <?php
         if(!isset($_SESSION["user"]))
         { 
@@ -43,8 +64,26 @@
                     <button>Aggiungi prodotto</button>
                 </form>    
             </div>
+         
     <?php
         }
     ?>
+
+   <?php
+        //controllo se ho fatto una ricerca, in questo caso stampo i risultati della ricerca
+        //altrimenti mostro altri prodotti
+        if(isset($prodotti))
+        {
+            print_r($prodotti);
+
+
+
+            unset($_SESSION["prodotti"]);
+        }
+        else
+        {
+            //stampo altri prodotti
+        }
+   ?>
 </body>
 </html>

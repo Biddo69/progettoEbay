@@ -11,7 +11,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
 
 
     //controllo se i parametri esistono
-    if(!isset($_POST["nome"],$_POST["descrizione"],$_POST["prezzo"],$_POST["quantità"],$_POST["categoria"],$FILES["immagini"]))
+    if(!isset($_POST["nome"],$_POST["descrizione"],$_POST["prezzo"],$_POST["quantità"],$_POST["categoria"]))
     {
         header("Location: ../PAGES/aggiungiProdotto.php?messaggio=Si è verificato un errore");
         exit;
@@ -20,7 +20,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
     //controllo se sono vuoti
     if(empty($_POST["nome"]) ||empty($_POST["descrizione"]) ||empty($_POST["prezzo"]) ||empty($_POST["quantità"]))
     {
-        header("Location: aggiungiProdotto.php?messaggio=Si è verificato un errore");
+        header("Location: ../PAGES/aggiungiProdotto.php?messaggio=Si è verificato un errore");
         exit;
     }
 

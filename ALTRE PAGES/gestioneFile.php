@@ -112,20 +112,42 @@
         }
         return $prodotti;
     }
-
-   /* function addUtente($utente)
-    {
-        return file_put_contents("../CSV/utenti.csv",$utente."\r\n",FILE_APPEND);
-    }
-
-    function addProdotto($prodotto)
-    {
-        return file_put_contents("../CSV/prodotti.csv",$prodotto."\r\n",FILE_APPEND);
-    }*/
-
+  
     function addToFile($path, $contenuto)
     {
         return file_put_contents($path,$contenuto."\r\n",FILE_APPEND);
+    }
 
+    function getAllProdottiNotFromUtente($id_utente, $contenuto, $id_categoria)
+    {
+        //ritorna tutti i prodotti che contengono una determinata parola, tranne quelli dell'utente da cui viene effettuata la ricerca
+        $allProdotti = getAllProdotti();
+
+        //prendo tutti i prodotti
+        $prodotti = [];
+        foreach ($allProdotti as $prodotto) {
+            if($prodotto->getId_utente() != $id_utente)
+                $prodotti[] = $prodotto;
+        }
+
+        //gli filtro per la categoria
+        if($id_categoria != "")
+        {
+            $prodottiTmp = [];
+            foreach ($prodotti as $prodotto) {
+                if($prodotto->getId_categoria() == $id_categoria)
+                    $prodottiTmp = $prodotto;
+            }
+            $prodotti = $prodottiTmp;
+        }
+
+        //gli filtro per il contenuto
+        $finalProdotti = [];
+        foreach ($prodotti as $prodotto) {
+            if(str_contains($prodotto->getNome(),$contenuto) || str_contains($prodotto->getDescrizione(),$contenuto))
+                $finalProdotti[] = $prodotto;
+        }
+        return $finalProdotti;
+       
     }
 ?>
