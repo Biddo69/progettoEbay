@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sito compravendita</title>
+    <link rel="stylesheet" href="../STYLE/homepage.css">
 </head>
 <body>
     Sito <br>
@@ -74,16 +75,35 @@
         //altrimenti mostro altri prodotti
         if(isset($prodotti))
         {
-            print_r($prodotti);
+            echo '<table>';
+            foreach ($prodotti as $prodotto) {
+                $immagini = getFotoById_Prodotto($prodotto->getId_utente());
+                echo '<tr>
+                    <div>
+                        <td><img src="'.$immagini[0]->getPath().'" alt=""><td>
+                        <td>
+                            <div>
+                                <p>'.$prodotto->getNome().'</p>
+                                <p>'.$prodotto->getDescrizione().'</p>
+                                <p>€'.$prodotto->getPrezzo().'</p>
+                            </div>
+                        </td>
+                        
+                    </div>
+                </tr>';
+            }
+            
+            echo '</table>';
+           
 
-
-
-            unset($_SESSION["prodotti"]);
+   
+            //unset($_SESSION["prodotti"]);
         }
         else
         {
             //stampo altri prodotti
         }
    ?>
+
 </body>
 </html>
