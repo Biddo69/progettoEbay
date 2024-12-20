@@ -136,7 +136,7 @@
             $prodottiTmp = [];
             foreach ($prodotti as $prodotto) {
                 if($prodotto->getId_categoria() == $id_categoria)
-                    $prodottiTmp = $prodotto;
+                    $prodottiTmp[] = $prodotto;
             }
             $prodotti = $prodottiTmp;
         }
