@@ -150,4 +150,14 @@
         return $finalProdotti;
        
     }
+
+    function getProdotto($id_prodotto)
+    {
+        $allProdotti = getAllProdotti();
+        foreach ($allProdotti as $prodotto) {
+            if($prodotto->getId_prodotto() == $id_prodotto)
+                return $prodotto;
+        }
+        return null;
+    }
 ?>

@@ -21,21 +21,8 @@
     <link rel="stylesheet" href="../STYLE/homepage.css">
 </head>
 <body>
-    Sito <br>
-    <form action="../ALTRE PAGES/ricerca.php" method="post">
-        <input type="text" name="cerca">
-        <button>Cerca</button> <!-- magari da sostituire con altro -->
-        <select name="categoria">
-            <option value="">Tutte le categorie</option>
-            <?php
-                foreach ($categorie as $categoria) {
-                    echo '<option value="'.$categoria->getId_categoria().'">'.$categoria->getNome().'</option>';
-                }
-
-            ?>
-        </select>
-    </form>
-    
+    <h1>Sito compravendita</h1>  <br>
+      
     <?php
         if(!isset($_SESSION["user"]))
         { 
@@ -69,6 +56,20 @@
     <?php
         }
     ?>
+    <form action="../ALTRE PAGES/ricerca.php" method="post">
+        <input type="text" name="cerca">
+        <button>Cerca</button> <!-- magari da sostituire con altro -->
+        <select name="categoria">
+            <option value="">Tutte le categorie</option>
+            <?php
+                foreach ($categorie as $categoria) {
+                    echo '<option value="'.$categoria->getId_categoria().'">'.$categoria->getNome().'</option>';
+                }
+
+            ?>
+        </select>
+    </form>
+
 
    <?php
         //controllo se ho fatto una ricerca, in questo caso stampo i risultati della ricerca
@@ -77,19 +78,27 @@
         {
             echo '<table>';
             foreach ($prodotti as $prodotto) {
-                $immagini = getFotoById_Prodotto($prodotto->getId_utente());
+                $immagini = getFotoById_Prodotto($prodotto->getId_prodotto());
                 echo '<tr>
-                    <div>
-                        <td><img src="'.$immagini[0]->getPath().'" alt=""><td>
-                        <td>
-                            <div>
-                                <p>'.$prodotto->getNome().'</p>
-                                <p>'.$prodotto->getDescrizione().'</p>
-                                <p>€'.$prodotto->getPrezzo().'</p>
-                            </div>
-                        </td>
-                        
-                    </div>
+                   
+                        <div>
+                            <td> 
+                                <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'"> <img src="'.$immagini[0]->getPath().'" alt=""> </a>
+                            </td>
+                            <td>
+                                <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'">
+
+                                <div>
+
+                                    <p>'.$prodotto->getNome().'</p>
+                                    <p>'.$prodotto->getDescrizione().'</p>
+                                    <p>€ '.$prodotto->getPrezzo().'</p>
+                                   
+                                </div>
+                                 </a>
+                            </td>
+                        </div> 
+                    
                 </tr>';
             }
             
