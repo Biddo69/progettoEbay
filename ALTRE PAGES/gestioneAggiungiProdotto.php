@@ -51,14 +51,18 @@ require_once("../ALTRE PAGES/gestioneFile.php");
         $stringa = $foto->toCSV();
         if(!addToFile($pathFileFoto,$stringa))
         {
-            echo "errore 1";
+            echo "errore 1";        //da cambiare
         }
     }
     $stringa = $prodotto->toCsv();
     if(!addToFile($pathFileProdotti,$stringa))
     {
-        echo "errore 2";
+        echo "errore 2";        //da cambiare
     }
+
+    header("Location: ../PAGES/homepage.php");
+    exit;
+
     
     
 ?>
