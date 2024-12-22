@@ -21,7 +21,7 @@
     
     //salvo il risultato nella sessione, vado all'altra pagina che poi stamperà i risultati e dopo cancellerà la variabile di sessione
     $_SESSION["prodotti"] = $prodotti;
-    header("Location: ../PAGES/homepage.php");
+    header("Location: ../PAGES/ricerca.php");
     exit;
     //echo $_POST["categoria"];
 ?>

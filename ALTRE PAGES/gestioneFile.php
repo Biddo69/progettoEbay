@@ -8,6 +8,7 @@
     $pathFileProdotti = "../CSV/prodotti.csv";
     $pathFileCategorie = "../CSV/categorie.csv";
     $pathFileFoto = "../CSV/foto.csv";
+    $pathFileCarrello = "../CSV/carrello.csv";
 
     
     //ritorna tutti gli utenti contenuti nel file
@@ -70,6 +71,23 @@
             }
         }
         return $categorie;
+    }
+
+    function getAllCarrello()
+    {
+        //da controllare se funziona
+        $carrello = [];
+        $contenuto = file_get_contents("../CSV/carrello.csv");
+        $righe = explode("\r\n",$contenuto);
+        foreach ($righe as $riga) {
+            if(!empty($riga))
+            {
+                $campi = explode( ";",$riga);
+                $vettoretmp = [$campi[0],$campi[1]];
+                $carrello[] = $vettoretmp;
+            }
+        }
+        return $carrello;
     }
 
     function getNextId_utente()    
@@ -159,5 +177,17 @@
                 return $prodotto;
         }
         return null;
+    }
+
+    function getCarrelloByUtente($id_utente)
+    {
+        $carrello = [];
+        //ritorna tutti i prodotti che un determinato utente ha messo nel carrello
+        $allCarrello = getAllCarrello();
+        foreach ($allCarrello as $riga) {
+            if($riga[0] == $id_utente)
+                $carrello[] = $riga;
+        }
+        return $carrello;
     }
 ?>
