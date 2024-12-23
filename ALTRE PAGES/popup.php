@@ -1,5 +1,16 @@
 <?php
     require_once("variabili.php");
+    if(!isset($_SESSION))
+        session_start();
+    $path = "../PAGES/homepage.php";
+    if(isset($_SESSION["risposta_path"]))
+    {
+        $path = $_SESSION["risposta_path"];
+        unset($_SESSION["risposta_path"]);
+    }
+    if(isset($_SESSION["id_prodotto"]))
+        $valore= $_SESSION["id_prodotto"];
+
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -114,11 +125,19 @@
             <button class="close-icon" id="closeIcon">&times;</button>
             <p>
                 <?php 
-            echo $_SESSION["risposta"];
-             unset($_SESSION["risposta"]);
-            ?></p>
+                    echo $_SESSION["risposta"];
+                    unset($_SESSION["risposta"]);
+                ?>
+            </p>
             <div class="modal-buttons">
-                <form action="../PAGES/homepage.php" method="post">
+                <form action="<?php echo $path?>" method="get">
+                    <?php
+                        if(isset($_SESSION["id_prodotto"]))
+                        {
+                            echo '<input type="hidden" name="id_prodotto" value="'.$valore.'">';
+                            unset($_SESSION["id_prodotto"]);
+                        }
+                    ?>
                     <button class="close-btn" id="closeModal">Close</button>
                 </form>
             </div>

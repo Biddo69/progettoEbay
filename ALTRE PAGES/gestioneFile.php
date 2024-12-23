@@ -3,9 +3,16 @@
     require_once("../CLASSES/prodotto.php");
     require_once("../CLASSES/foto.php");
     require_once("../CLASSES/categoria.php");
-    require_once("variabili.php");
-
-
+    $pathFileUtenti = "../CSV/utenti.csv";
+    $pathFileProdotti = "../CSV/prodotti.csv";
+    $pathFileCategorie = "../CSV/categorie.csv";
+    $pathFileCarrello = "../CSV/carrello.csv";
+    $pathFileFoto = "../CSV/foto.csv";
+    define('PATH_FILE_UTENTI', "../CSV/foto.csv");
+    define('PATH_FILE_PRODOTTI', "../CSV/prodotti.csv");
+    define('PATH_FILE_CATEGORIE', "../CSV/categorie.csv");
+    define('PATH_FILE_CARRELLO', "../CSV/carrello.csv");
+    define('PATH_FILE_FOTO', "../CSV/foto.csv");
     
     //ritorna tutti gli utenti contenuti nel file
     function getAllUtenti()
@@ -132,7 +139,7 @@
         return file_put_contents($path,$contenuto."\r\n",FILE_APPEND);
     }
 
-    function getAllProdottiNotFromUtente($id_utente, $contenuto, $id_categoria)
+    function getAllProdottiNotFromUtente($id_utente, $contenuto = "", $id_categoria = "")
     {
         //ritorna tutti i prodotti che contengono una determinata parola, tranne quelli dell'utente da cui viene effettuata la ricerca
         $allProdotti = getAllProdotti();
@@ -187,12 +194,62 @@
         return $carrello;
     }
 
-    function getLast5Prodotti()
+    function getLast5Prodotti($id_utente)
     {
-        $prodotti = getAllProdotti();
+        $prodotti = getAllProdottiNotFromUtente($id_utente);
+
         if(count($prodotti) < 5)
             return $prodotti;
         $prodotti = array_splice($prodotti,0,count($prodotti) - 5);
         return $prodotti;
     }
+
+    function scriviTuttiProdotti($contenuto)
+    {
+        $pathFileProdotti = "../CSV/prodotti.csv";
+        file_put_contents($pathFileProdotti,"");
+        foreach ($contenuto as $prodotto) {
+            $riga = $prodotto->toCsv();
+            file_put_contents($pathFileProdotti,$riga."\r\n",FILE_APPEND);
+        }
+    }
+
+    function scriviCarrello($carrello)
+    {
+        $pathFileCarrello = "../CSV/carrello.csv";
+        file_put_contents($pathFileCarrello,"");
+        foreach ($carrello as $elemento) {
+            $riga = $elemento[0].";".$elemento[1];
+            file_put_contents($pathFileCarrello,$riga."\r\n",FILE_APPEND);
+        }
+    }
+
+    function scriviFoto($contenuto){
+
+        file_put_contents(PATH_FILE_FOTO,"");
+        foreach ($contenuto as $foto) {
+            if($foto != null)
+            {
+                $riga = $foto->toCSV();
+                file_put_contents(PATH_FILE_FOTO,$riga."\r\n",FILE_APPEND);
+            }
+          
+
+        }
+    }
+
+    function deleteFotoById_prodotto($id_prodotto)
+    {
+        $foto = getAllFoto();
+        for ($i=0; $i < count($foto); $i++) { 
+            if($foto[$i]->getId_prodotto() == $id_prodotto)
+            {                
+                unlink(filename: $foto[$i]->getPath());
+                $foto[$i] = null;
+            }
+        }
+        scriviFoto($foto);
+    }
+
+    
 ?>

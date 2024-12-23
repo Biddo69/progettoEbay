@@ -11,6 +11,9 @@
         $prodotti = $_SESSION["prodotti"];
         //print_r($_SESSION["prodotti"]);
     }*/
+
+    if(isset($_SESSION["user"]))
+        $utente = $_SESSION["user"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +33,10 @@
 
    <table>
     <?php
-        $prodotti = getLast5Prodotti();
+        $id_utente = -1;
+        if(isset($utente))
+            $id_utente = $utente->getId_utente();
+        $prodotti = getLast5Prodotti($id_utente); 
         foreach ($prodotti as $prodotto) {
             $immagini = getFotoById_Prodotto($prodotto->getId_prodotto());
             echo '<tr>
@@ -60,16 +66,13 @@
                                     <button>Aggiungi al carrello</button>
 
                                 </form>
-                            </td>
-
-                            <td>
+                            </td>';
+                            }
+                            echo '<td>
                                 <form action="" method="post">
                                     <button>Compra ora</button>
                                 </form>
                             </td>';
-                        }
-                      
-                   
                 
             echo '  </div>
             </tr>';
