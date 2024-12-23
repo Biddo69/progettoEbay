@@ -15,106 +15,63 @@
 <html lang="en">
 <head>
     <style>
-        /* Stile generale */
-/* Stile generale */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #f9f9f9;
     color: #333;
 }
 
-/* Carosello */
-.carousel {
-    margin: 20px auto;
+.container {
     max-width: 800px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-inner img {
-    object-fit: cover;
-    width: 100%;
-    height: 400px;
-}
-
-/* Stile pulsanti del carosello */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 10px;
-}
-
-/* Contenitore informazioni prodotto */
-#product-details {
     margin: 20px auto;
-    max-width: 800px;
     padding: 20px;
-    background: #fff;
-    border-radius: 10px;
+    background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    border-radius: 8px;
 }
 
-#product-details p {
+.product {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.product-image img {
+    max-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #222;
+}
+
+.product-details .description {
     margin: 10px 0;
-    font-size: 1.2rem;
-    line-height: 1.8;
-}
-
-#product-details p:first-child {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #007BFF;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    letter-spacing: 1.2px;
-}
-
-#product-details p:nth-child(2) {
-    font-size: 1.4rem;
+    font-size: 1em;
     color: #555;
-    font-style: italic;
-    margin-bottom: 20px;
 }
 
-#product-details p:nth-child(3) {
-    font-size: 1.6rem;
-    color: #28a745;
+.product-details .quantity {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.product-details .price {
+    font-size: 1.2em;
     font-weight: bold;
-    margin-top: 10px;
+    color: #e63946;
+    margin-top: 5px;
 }
 
-/* Media query per dispositivi mobili */
-@media (max-width: 768px) {
-    .carousel {
-        max-width: 100%;
-    }
-
-    #product-details {
-        padding: 15px;
-    }
-
-    #product-details p {
-        font-size: 1rem;
-    }
-
-    #product-details p:first-child {
-        font-size: 1.5rem;
-    }
-
-    #product-details p:nth-child(2) {
-        font-size: 1.2rem;
-    }
-
-    #product-details p:nth-child(3) {
-        font-size: 1.4rem;
-    }
-}
 
 
     </style>
@@ -126,50 +83,57 @@ body {
 
 </head>
 <body>
+
 <!-- immagini -->
-    <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-        <?php
-            	echo 
-                '<div class="carousel-item active">
-                    <img src="'.$immagini[0]->getPath().'" class="d-block w-100" alt="...">
-                </div>';
-                
-                for ($i=1; $i < count($immagini); $i++) { 
-                    echo 
-                    '<div class="carousel-item">
-                        <img src="'.$immagini[$i]->getPath().'" class="d-block w-100" alt="...">
+    <div id="productContainer">
+        <div id="product">      
+   
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <?php
+                        echo 
+                        '<div class="carousel-item active">
+                            <div class="product-image">
+                                <img src="'.$immagini[0]->getPath().'" class="d-block w-100" alt="...">
+                                </div>
+                        </div>';
+                        
+                        for ($i=1; $i < count($immagini); $i++) { 
+                            echo 
+                            '<div class="carousel-item">
+                                <div class="product-image">
+                                <img src="'.$immagini[$i]->getPath().'" class="d-block w-100" alt="...">
+                                </div>
+                            </div>';
+                        }
+                    ?>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div>
+                <?php
+                    echo '
+                    <div class="product-details">
+                            <h2>'.$prodotto->getNome().'</h2>
+                            <p class="description">'.$prodotto->getDescrizione().'</p>
+                            <p class="quantity">'.$prodotto->getQuantità().'</p>
+                            <p class="price">'.$prodotto->getPrezzo().'</p>
                     </div>';
-                }
-        ?>
+                
+                ?>
+            
+
+            </div>
+
+        </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-    </div>
-<!-- nome -->
- <div>
-    <?php
-        echo
-        '<p>
-            '.$prodotto->getNome().'
-        </p>
-        
-        <p>
-            '.$prodotto->getDescrizione().'
-        </p>
-        
-        <p>
-            '.$prodotto->getPrezzo().'
-        </p>';
-    
-    ?>
- </div>
 <!-- descrizione -->  
 </body>
 </html>

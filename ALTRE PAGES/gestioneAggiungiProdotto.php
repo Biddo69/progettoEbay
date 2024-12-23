@@ -60,6 +60,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
         echo "errore 2";        //da cambiare
     }
 
+    $_SESSION["risposta"] = "Prodotto inserito correttamente";
     header("Location: ../PAGES/homepage.php");
     exit;
 

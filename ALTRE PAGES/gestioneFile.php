@@ -3,12 +3,8 @@
     require_once("../CLASSES/prodotto.php");
     require_once("../CLASSES/foto.php");
     require_once("../CLASSES/categoria.php");
+    require_once("variabili.php");
 
-    $pathFileUtenti = "../CSV/utenti.csv";
-    $pathFileProdotti = "../CSV/prodotti.csv";
-    $pathFileCategorie = "../CSV/categorie.csv";
-    $pathFileFoto = "../CSV/foto.csv";
-    $pathFileCarrello = "../CSV/carrello.csv";
 
     
     //ritorna tutti gli utenti contenuti nel file
@@ -189,5 +185,14 @@
                 $carrello[] = $riga;
         }
         return $carrello;
+    }
+
+    function getLast5Prodotti()
+    {
+        $prodotti = getAllProdotti();
+        if(count($prodotti) < 5)
+            return $prodotti;
+        $prodotti = array_splice($prodotti,0,count($prodotti) - 5);
+        return $prodotti;
     }
 ?>
