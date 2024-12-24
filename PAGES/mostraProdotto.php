@@ -198,7 +198,7 @@ img{
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                     <?php
-                        echo 
+                       /* echo 
                         '<div class="carousel-item active">
                             <div class="product-image">
                                 <img src="'.$immagini[0]->getPath().'" class="d-block w-100" alt="...">
@@ -212,17 +212,17 @@ img{
                                 <img src="'.$immagini[$i]->getPath().'" class="d-block w-100" alt="...">
                                 </div>
                             </div>';
-                        }
+                        }*/
                     ?>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+               <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
-                </button>
+                </button>-->
             </div>
             <div>
                 <?php
@@ -231,7 +231,7 @@ img{
                             <h2>'.$prodotto->getNome().'</h2>
                             <p class="description">'.$prodotto->getDescrizione().'</p>
                             <p class="quantity">'.$prodotto->getQuantità().'</p>
-                            <p class="price">'.$prodotto->getPrezzo().'</p>
+                            <p class="price">€'.$prodotto->getPrezzo().'</p>
                     </div>';
                 
                 ?>

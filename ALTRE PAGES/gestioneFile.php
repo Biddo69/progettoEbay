@@ -64,7 +64,7 @@
     function getAllCategorie()
     {
         $categorie = [];
-        $contenuto = file_get_contents("../CSV/categorie.csv");
+        $contenuto = file_get_contents(PATH_FILE_CATEGORIE);
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
@@ -80,7 +80,7 @@
     {
         //da controllare se funziona
         $carrello = [];
-        $contenuto = file_get_contents("../CSV/carrello.csv");
+        $contenuto = file_get_contents(PATH_FILE_CARRELLO);
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
@@ -189,7 +189,11 @@
         $allCarrello = getAllCarrello();
         foreach ($allCarrello as $riga) {
             if($riga[0] == $id_utente)
-                $carrello[] = $riga;
+            {
+                //devo aggiungere al vettore il prodotto con lo stesso id_prodotto presente nel carrello
+                $carrello[] = getProdotto($riga[1]);
+
+            }
         }
         return $carrello;
     }
@@ -249,6 +253,17 @@
             }
         }
         scriviFoto($foto);
+    }
+
+    function getCostoCarrello($id_utente)
+    {
+        //non ha molto senso perchè io non specifico la quantità
+        $carrello = getCarrelloByUtente($id_utente);
+        $prezzo = 0;
+        foreach ($carrello as $prodotto) {
+            $prezzo += $prodotto->getPrezzo();
+        }
+        return $prezzo;
     }
 
     

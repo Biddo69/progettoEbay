@@ -4,8 +4,9 @@
         session_start();
     if(!isset($_GET["id_prodotto"]))
     {
-        //header("Location: homepage.php?messaggio=Si è verificato un erroreee");
-        //exit;
+        $_SESSION["risposta"] = "Si è verificato un errore";
+        header("Location: homepage.php");
+        exit;
     }   
    $prodotto = getProdotto($_GET["id_prodotto"]);
    $immagini = getFotoById_Prodotto($_GET["id_prodotto"]);
@@ -16,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sito compravendita - pagamento</title>
 </head>
 <body>
     <?php
@@ -82,7 +83,7 @@
                     indirizzo <input type="text" name="indirizzo"> <br>
                     codice <input type="text" name="codice"> <br>
                     cvv <input type="text" name="cvv"> <br>
-                   scadenza <input type="text" name="scadenza"> <br>
+                    scadenza <input type="text" name="scadenza"> <br>
 
 
                 <input type="hidden" name="id_prodotto" value="<?php echo $prodotto->getId_prodotto() ?>">

@@ -54,7 +54,7 @@
                             {
                                 echo '
                                   <td>
-                                    <form action="../ALTRE PAGES/gestioneCarrello.php method="get">
+                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="get">
                                         <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="id_prodotto">
                                         <button>Aggiungi al carrello</button>
 
