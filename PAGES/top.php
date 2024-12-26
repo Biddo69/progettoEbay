@@ -55,7 +55,7 @@
         }
     ?>
   
-  <form action="../ALTRE PAGES/ricerca.php" method="post">
+  <form action="ricerca.php" method="post">
         <input type="text" name="cerca" placeholder="Cerca un prodotto...">
         <button>Cerca</button> <!-- magari da sostituire con altro -->
         <select name="categoria">

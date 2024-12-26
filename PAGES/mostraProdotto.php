@@ -10,6 +10,7 @@
     }   
    $prodotto = getProdotto($_GET["id_prodotto"]);
    $immagini = getFotoById_Prodotto($_GET["id_prodotto"]);
+   $venditore = getUtente($prodotto->getId_utente());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,7 +241,13 @@ img{
                 <input type="hidden" name="id_prodotto" value="<?php echo $prodotto->getId_prodotto() ?>">
                 <button>Compra ora</button>
             </form>
-
+            <div>
+                <a href="mostraUtente.php?id_utente=<?php echo $venditore->getId_utente() ?>">
+                <?php
+                    echo 'Prodotto venduto da '.$venditore->getNome().' '.$venditore->getCognome();
+                ?>  
+                </a>
+            </div>
         </div>
     </div>
 <!-- descrizione -->  

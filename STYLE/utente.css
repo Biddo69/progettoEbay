@@ -1,0 +1,132 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Contenitore del profilo */
+#profile-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Intestazione del profilo */
+#profile-header {
+    margin-bottom: 20px;
+}
+
+#profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#profile-header h1 {
+    font-size: 1.8rem;
+    color: #007BFF;
+    margin: 10px 0;
+}
+
+/* Dettagli del profilo */
+#profile-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#profile-details p {
+    font-size: 1rem;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+#profile-details strong {
+    color: #333;
+}
+
+/* Contenitore prodotti */
+#products-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#products-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Tabella dei prodotti */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+table td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Pulsanti */
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form {
+    display: inline;
+}
+
+/* Pulsante Compra ora */
+form button[type="submit"] {
+    background-color: #28a745;
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Pulsante Aggiungi al carrello */
+form button {
+    margin-left: 5px;
+}
+

@@ -266,5 +266,27 @@
         return $prezzo;
     }
 
+    function getUtente($id_utente)
+    {
+        //ritorna un utente in base all'id
+        $utenti = getAllUtenti();
+        foreach ($utenti as $utente) {
+            if($utente->getId_utente() == $id_utente)
+                return $utente;
+        }
+        return null;
+    }
+
+    function getProdottiFromUtente($id_utente)
+    {
+        $allProdotti = getAllProdotti();
+        $prodotti = [];
+        foreach ($allProdotti as $prodotto) {
+            if($prodotto->getId_utente() == $id_utente)
+                $prodotti[] = $prodotto;
+        }
+        return $prodotti;
+    }
+
     
 ?>
