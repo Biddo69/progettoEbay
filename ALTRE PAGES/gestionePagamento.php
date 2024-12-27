@@ -12,7 +12,7 @@
     }
     if(empty($_GET["quantità"]) || empty($_GET["nome"]) || empty($_GET["cognome"]) || empty($_GET["mail"]) || empty($_GET["città"]) || empty($_GET["cap"]) || empty($_GET["indirizzo"]) || empty($_GET["codice"]) || empty($_GET["cvv"]) || empty($_GET["scadenza"]))
     {
-        $_SESSION["risposta"] = "Mancano alcuni dati per completare il pagamentoo";
+        $_SESSION["risposta"] = "Mancano alcuni dati per completare il pagamento";
         $_SESSION["risposta_path"] = "../PAGES/compra.php";
         $_SESSION["id_prodotto"] = $_GET["id_prodotto"];
         header("Location: ../PAGES/compra.php?id_prodotto=".$_GET["id_prodotto"]);
@@ -20,6 +20,33 @@
     }
 
     //controlli vari
+
+    $prodotto = $_GET["id_prodotto"];
+
+        //controllo se la quantità è corretta
+    if($_GET["quantità"] > $prodotto->getQuantità())
+    {
+        $_SESSION["risposta"] = "Errore nell'inserimento dei dati";
+        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["id_prodotto"] = $_GET["id_prodotto"];
+        header("Location: ../PAGES/compra.php?id_prodotto=".$_GET["id_prodotto"]);
+        exit;
+    }
+
+
+    //controllo se nel codice della carta di credito sono presenti delle lettere, controllo anche nel cvv anche se è già input type number
+    if(preg_match('/[a-zA-Z]/', $_GET["codice"]) || preg_match('/[a-zA-Z]/', $_GET["cvv"]))
+    {
+        $_SESSION["risposta"] = "Errore nell'inserimento dei dati";
+        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["id_prodotto"] = $_GET["id_prodotto"];
+        header("Location: ../PAGES/compra.php?id_prodotto=".$_GET["id_prodotto"]);
+        exit;
+    }
+        //controllo i dati della carta
+            //se la data di scadenza è messa prima di ora non va bene
+            //che il codice e il cvv siano di lunghezza giusta
+
 
 
     //diminuisco la quantità e nel caso lo elimino

@@ -90,17 +90,23 @@
 
             
     <form action="../ALTRE PAGES/gestionePagamento.php" method="get">
-            quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>" value="1"> <br>
-            nome <input type="text" name="nome"> <br>
-            cognome <input type="text" name="cognome"> <br>
-            mail <input type="email" name="mail"> <br>
-            città <input type="text" name="città"> <br>
-            CAP <input type="text" name="cap"> <br>
-            indirizzo <input type="text" name="indirizzo"> <br>
-            codice <input type="text" name="codice"> <br>
-            cvv <input type="text" name="cvv"> <br>
-            scadenza <input type="text" name="scadenza"> <br>
-
+            <div>
+                <h2>Dati utente</h2>
+                Quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>"> <br>
+                Nome <input type="text" name="nome"> <br>
+                Cognome <input type="text" name="cognome"> <br>
+                Mail <input type="email" name="mail"> <br>
+                Città <input type="text" name="città"> <br>
+                CAP <input type="text" name="cap"> <br>
+                Indirizzo <input type="text" name="indirizzo"> <br>
+            </div>
+            
+            <div>
+                <h2>Dati carta di credito</h2>
+                Codice <input type="text" name="codice"> <br>
+                Cvv <input type="number" name="cvv"> <br>
+                Scadenza <input type="date" name="scadenza"> <br>
+            </div>
 
         <input type="hidden" name="id_prodotto" value="<?php echo $prodotto->getId_prodotto() ?>">
         <button>Paga</button>
