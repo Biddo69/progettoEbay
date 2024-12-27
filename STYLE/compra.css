@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Carousel */
+.splide {
+    margin: 20px auto;
+    max-width: 300px;
+    position: relative;
+}
+
+.splide__track {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Frecce personalizzate */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.custom-arrow.prev {
+    left: -0px;
+}
+
+.custom-arrow.next {
+    right: -0px;
+}
+
+.custom-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Contenitore del prodotto */
+#productContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+.product-details h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.product-details .description {
+    font-size: 1em;
+    margin: 10px 0;
+    color: #555;
+}
+
+.product-details .quantity {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.product-details .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e63946;
+    margin-top: 5px;
+}
+
+/* Modulo di pagamento */
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+}
+
+form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Titoli e layout */
+form input {
+    font-family: Arial, sans-serif;
+}
+
+form label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #333;
+}
+
+form input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+form .error {
+    color: #e63946;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* Layout */
+form > div {
+    margin-bottom: 15px;
+}
+
+/* Media Query per dispositivi mobili */
+@media (max-width: 600px) {
+    #productContainer, form {
+        padding: 15px;
+    }
+
+    form button {
+        font-size: 0.9rem;
+    }
+}

@@ -118,6 +118,8 @@ p {
     margin: 0;
 }
 
+
+
 /* Media query per dispositivi mobili */
 @media (max-width: 768px) {
     input[type="text"] {

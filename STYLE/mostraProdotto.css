@@ -1,0 +1,139 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Carousel */
+.splide {
+    margin: 20px auto;
+    max-width: 300px;
+    position: relative;
+}
+
+.splide__track {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Frecce personalizzate */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.custom-arrow.prev {
+    left: -0px;
+}
+
+.custom-arrow.next {
+    right: -0px;
+}
+
+.custom-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Dettagli del prodotto */
+.product-details {
+    margin-top: 20px;
+}
+
+.product-details h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.product-details .description {
+    font-size: 1em;
+    margin: 10px 0;
+    color: #555;
+}
+
+.product-details .quantity {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.product-details .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e63946;
+    margin-top: 5px;
+}
+
+/* Pulsanti */
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form {
+    margin-top: 20px;
+}
+
+/* Link al venditore */
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Produttore/Venditore */
+#productContainer div:last-child {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #555;
+    text-align: center;
+}
