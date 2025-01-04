@@ -1,5 +1,6 @@
 <?php
-    if(!isset($_SESSION))
+    require_once("../ALTRE PAGES/gestioneFile.php");
+       if(!isset($_SESSION))
         session_start();
     if(!isset($_SESSION["user"]))
     {
@@ -43,7 +44,6 @@
                 <label for="categoria">Categoria:</label>
                 <select name="categoria" id="categoria">
                     <?php
-                        require_once("../ALTRE PAGES/gestioneFile.php");
                         $categorie = getAllCategorie();
                         foreach ($categorie as $categoria) {
                             echo '<option value="'.$categoria->getId_categoria().'">'.$categoria->getNome().'</option>';
@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="immagini">Immagini:</label>
-                <input type="file" name="immagini[]" id="immagini" accept=".png,.jpg" multiple>
+                <input type="file" name="immagini[]" id="immagini" accept="image/jpeg, image/png" multiple>
             </div>
             <button type="submit">Invia</button>
         </form>

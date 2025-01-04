@@ -20,7 +20,7 @@
     <title>Sito compravendita - mostra prodotto</title>
     <link rel="stylesheet" href="../STYLE/mostraProdotto.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     var splide = new Splide('#carousel', {
@@ -55,16 +55,16 @@
         <ul class="splide__list">
             <?php
 
-            // Ciclo per generare dinamicamente i <li> con le immagini
-            foreach ($immagini as $immagine) {
-                echo '<li class="splide__slide">
-                <div class="divImg">
-                <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
-                <button class="custom-arrow prev">‹</button>
-                <button class="custom-arrow next">›</button>
-                </div>
-                </li>';
-            }
+                // Ciclo per generare dinamicamente i <li> con le immagini
+                foreach ($immagini as $immagine) {
+                    echo '<li class="splide__slide">
+                        <div class="divImg">
+                            <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
+                            <button class="custom-arrow prev">‹</button>
+                            <button class="custom-arrow next">›</button>
+                        </div>
+                    </li>';
+                }
             
             ?>
         </ul>

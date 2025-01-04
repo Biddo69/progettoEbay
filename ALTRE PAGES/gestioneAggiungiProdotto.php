@@ -13,8 +13,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
     //controllo se i parametri esistono
     if(!isset($_POST["nome"],$_POST["descrizione"],$_POST["prezzo"],$_POST["quantità"],$_POST["categoria"]))
     {
-        /*header("Location: ../PAGES/aggiungiProdotto.php?messaggio=Si è verificato un errore");
-        exit;*/
+     
 
         $_SESSION["risposta"] = "Si è verificato un errore";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
@@ -31,23 +30,9 @@ require_once("../ALTRE PAGES/gestioneFile.php");
         exit;
     }
 
-
-
-
-
-
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-
-
-
     //controllo le foto
     if (!isset($_FILES["immagini"])) {
-        $_SESSION["risposta"] = "Nessuna immagine selezionata.";
+        $_SESSION["risposta"] = "Nessuna immagine selezionata";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
         header("Location: ../PAGES/aggiungiProdotto.php");
         exit;
@@ -55,36 +40,43 @@ require_once("../ALTRE PAGES/gestioneFile.php");
 
     if(count($_FILES["immagini"]["name"]) == 1 && $_FILES["immagini"]["name"][0] == "")
     {
-        $_SESSION["risposta"] = "Nessuna immagine selezionata.";
+        $_SESSION["risposta"] = "Nessuna immagine selezionata";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
         header("Location: ../PAGES/aggiungiProdotto.php");
         exit;
     }
 
-    
+    //controllo l'estensione delle immagini
+    foreach ($_FILES["immagini"]["name"] as $value) {
+        $estensione = strtolower(pathinfo($value, PATHINFO_EXTENSION));
+        if(!($estensione == "jpg" || $estensione == "jpeg" || $estensione == "png"))
+        {
+            $_SESSION["risposta"] = "Estensione delle immagini non valida";
+            $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
+            header("Location: ../PAGES/aggiungiProdotto.php");
+            exit;
+        }
+    }
 
 
-
-
-
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------------------------------
-
-    //ALTRI CONTROLLI SE CI VENGONO IN MENTE
-    //Formato delle stringhe, lunghezza massima titolo e descrizione (20 e 300 caratteri), numero massimo di immagini
-    if(strlen($_POST["descrizione"]) > 10)
+   //controlla la lunghezza della descrizione
+    if(strlen($_POST["descrizione"]) > 100)
     {
         $_SESSION["risposta"] = "Descrizione troppo lunga";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
         header("Location: ../PAGES/aggiungiProdotto.php");
         exit;
     }
+
+    //controllo il numero di immagini caricate
+    if(count($_FILES["immagini"]["name"]) > 5)
+    {
+        $_SESSION["risposta"] = "Non puoi caricare troppe immagini (max 5)";
+        $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
+        header("Location: ../PAGES/aggiungiProdotto.php");
+        exit;
+    }
+
 
     $id_prodotto = getNextID_prodotto();
     $utente = $_SESSION["user"];
@@ -94,16 +86,22 @@ require_once("../ALTRE PAGES/gestioneFile.php");
 
 
     //salvo le immagini
-    $oldPath = [];
+    $cont = 0;
     foreach ($_FILES["immagini"]["tmp_name"] as $value) {
-        $oldPath[] = $value;
+        $newPath =  "../FOTO/".$prodotto->getId_prodotto()."_".$cont.".png";
+        move_uploaded_file($value,$newPath);
+        $foto = new foto($id_prodotto,$newPath);
+        $stringa = $foto->toCSV();
+        if(!addToFile(PATH_FILE_FOTO,$stringa))
+        {
+            $_SESSION["risposta"] = "Si è verificato un errore";
+            $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
+            header("Location: ../PAGES/aggiungiProdotto.php");
+            exit;
+        }
+        $cont++;
     }
-    $newPath = [];
-    foreach ($_FILES["immagini"]["name"] as $value) {
-        $newPath[] = "../FOTO/".$value;
-    }
-
-    for ($i=0; $i < count($oldPath); $i++) { 
+    /*for ($i=0; $i < count($oldPath); $i++) { 
         move_uploaded_file($oldPath[$i],$newPath[$i]);
         $foto = new foto($id_prodotto,$newPath[$i]);
         $stringa = $foto->toCSV();
@@ -114,7 +112,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
             header("Location: ../PAGES/aggiungiProdotto.php");
             exit;
         }
-    }
+    }*/
     $stringa = $prodotto->toCsv();
     if(!addToFile(PATH_FILE_PRODOTTI,$stringa))
     {

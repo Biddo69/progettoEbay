@@ -15,6 +15,7 @@
         $utente = $_SESSION["user"];
     }
     else
+        $utente = new utente("","","","","","","");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,20 +101,20 @@
     <form action="../ALTRE PAGES/gestionePagamento.php" method="post">
             <div>
                 <h2>Dati utente</h2>
-                Quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>" value="1"> <br>
-                Nome <input type="text" name="nome" value="<?php echo $utente->getNome() ?? ''; ?>"> <br>
-                Cognome <input type="text" name="cognome" value="<?php echo $utente->getCognome() ?? ''; ?>"> <br>
-                Mail <input type="email" name="mail" value="<?php echo $utente->getMail() ?? ''; ?>"> <br>
-                Città <input type="text" name="città"> <br>
-                CAP <input type="text" name="cap"> <br>
-                Indirizzo <input type="text" name="indirizzo"> <br>
+                Quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>" value="1" required> <br>
+                Nome <input type="text" name="nome" value="<?php echo $utente->getNome() ?>" required> <br>
+                Cognome <input type="text" name="cognome" value="<?php echo $utente->getCognome()?>" required> <br>
+                Mail <input type="email" name="mail" value="<?php echo $utente->getMail()?>" required> <br>
+                Città <input type="text" name="città" required> <br>
+                CAP <input type="number" name="cap" required> <br>
+                Indirizzo <input type="text" name="indirizzo" required> <br>
             </div>
             
             <div>
                 <h2>Dati carta di credito</h2>
-                Codice <input type="text" name="codice"> <br>
-                Cvv <input type="number" name="cvv"> <br>
-                Scadenza <input type="date" name="scadenza"> <br>
+                Codice <input type="text" name="codice" required> <br>
+                Cvv <input type="number" name="cvv" required> <br>
+                Scadenza <input type="date" name="scadenza" required> <br>
             </div>
 
         <input type="hidden" name="id_prodotto" value="<?php echo $prodotto->getId_prodotto() ?>">

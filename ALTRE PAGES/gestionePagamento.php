@@ -37,7 +37,7 @@
     //controllo se nel codice della carta di credito sono presenti delle lettere, controllo anche nel cvv anche se è già input type number
     if(preg_match('/[a-zA-Z]/', $_POST["codice"]) || preg_match('/[a-zA-Z]/', $_POST["cvv"]))
     {
-        $_SESSION["risposta"] = "Errore nell'inserimento dei dati (regex)";
+        $_SESSION["risposta"] = "Errore nell'inserimento dei dati";
         $_SESSION["risposta_path"] = "../PAGES/compra.php";
         $_SESSION["id_prodotto"] = $_POST["id_prodotto"];
         header("Location: ../PAGES/compra.php?id_prodotto=".$_POST["id_prodotto"]);
@@ -55,9 +55,33 @@
         exit;
     }
     
-        //controllo i dati della carta
-            //che il codice e il cvv siano di lunghezza giusta
+    //controllo la lunghezza del cvv e del codice
+    if((!$_POST["cvv"] >= 100 && $_POST["cvv"] < 1000))
+    {
+        $_SESSION["risposta"] = "Si è verificato problema con il cvv della carta di credito";
+        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["id_prodotto"] = $_POST["id_prodotto"];
+        header("Location: ../PAGES/compra.php?id_prodotto=".$_POST["id_prodotto"]);
+        exit;
+    }
+    if(strlen($_POST["codice"]) != 16)
+    {
+        $_SESSION["risposta"] = "Si è verificato problema con il codice della carta di credito";
+        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["id_prodotto"] = $_POST["id_prodotto"];
+        header("Location: ../PAGES/compra.php?id_prodotto=".$_POST["id_prodotto"]);
+        exit;
+    }
 
+    //controllo il cap
+    if(!($_POST["cap"] >= 10000 && $_POST["cap"] < 100000))
+    {
+        $_SESSION["risposta"] = "CAP non valido";
+        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["id_prodotto"] = $_POST["id_prodotto"];
+        header("Location: ../PAGES/compra.php?id_prodotto=".$_POST["id_prodotto"]);
+        exit;
+    }
 
 
     //diminuisco la quantità e nel caso lo elimino
