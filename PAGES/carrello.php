@@ -20,40 +20,57 @@
     <link rel="stylesheet" href="../STYLE/carrello.css">
 </head>
 <body>
+<?php
+        if(isset($_SESSION["risposta"]))
+            require_once("../ALTRE PAGES/popup.php");
+   ?>
     <table>
         <?php
-            foreach ($carrello as $prodotto) {
-                $immagini = getFotoById_Prodotto($prodotto->getId_prodotto());
-                echo '<tr>
-                   
-                        <div>
-                            <td> 
-                                <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'"> <img src="'.$immagini[0]->getPath().'" alt=""> </a>
-                            </td>
-                            <td>
-                                <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'">
-    
-                                    <div>
-    
-                                        <p>'.$prodotto->getNome().'</p>
-                                        <p>'.$prodotto->getDescrizione().'</p>
-                                        <p>€ '.$prodotto->getPrezzo().'</p>
-                                    
-                                    </div>
-                                </a>
-                            </td>';
-                           
-                            echo '<td>
-                                <form action="compra.php" method="post">
-                                    <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
-                                    <button>Compra ora</button>
-                                </form>
-                            </td>';
-                    
-                echo '  </div>
-                </tr>';
+            if(count($carrello) > 0)
+            {
+                foreach ($carrello as $prodotto) {
+                    $immagini = getFotoById_Prodotto($prodotto->getId_prodotto());
+                    echo '<tr>
+                       
+                            <div>
+                                <td> 
+                                    <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'"> <img src="'.$immagini[0]->getPath().'" alt=""> </a>
+                                </td>
+                                <td>
+                                    <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'">
+        
+                                        <div>
+        
+                                            <p class="nome">'.$prodotto->getNome().'</p>
+                                            <p class="descrizione">'.$prodotto->getDescrizione().'</p>
+                                            <p>€ '.$prodotto->getPrezzo().'</p>
+                                        
+                                        </div>
+                                    </a>
+                                </td>';
+                               
+                                echo '<td>
+                                    <form action="compra.php" method="get" class="formBottoni">
+                                        <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
+                                        <button>Compra ora</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="post" class="formBottoni">
+                                        <input type="hidden" name="eliminaProdotto" value="'.$prodotto->getId_prodotto().'">
+                                        <button>Rimuovi dal carrello</button>
+                                    </form>
+                                </td>
+                            </div>
+                    </tr>';
+                }
+                echo "Prezzo: ".$prezzo;
             }
-            echo "Prezzo: ".$prezzo;
+            else
+            {
+                echo '<h1>Nessun prodotto presente nel carrello</h1>';
+            }
+           
 
         ?>
     </table>

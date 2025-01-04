@@ -34,7 +34,7 @@
     }
 
     //controllo la foto
-    if(isset($_FILES["foto"]) && !isset($_FILES["foto"]["error"]))
+    if(isset($_FILES["foto"]) && $_FILES['foto']['error'] === UPLOAD_ERR_OK)
     {
         $oldPath = $_FILES["foto"]["tmp_name"];
         $newPath = "../FOTO/".$_FILES["foto"]["name"];
@@ -49,7 +49,7 @@
     $id = getNextId_utente();
     $newUtente = new utente($id,$_POST["nome"],$_POST["cognome"],$_POST["mail"],$_POST["password"],$newPath,$_POST["residenza"]);
     $toCSV = $newUtente->toCsv();
-    if(!addToFile($pathFileUtenti,$toCSV))
+    if(!addToFile(PATH_FILE_UTENTI,$toCSV))
     {
         header("Location: ../PAGES/registrati.php?messaggio=si è verificato un errore durante la registrazione");
         exit;

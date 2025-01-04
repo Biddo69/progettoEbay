@@ -34,6 +34,22 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+li{
+    height: fit-content;
+    margin: auto;
+}
+
+img{
+    margin:auto;
+
+}
+
+.divImg{
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
+
 /* Frecce personalizzate */
 .custom-arrow {
     position: absolute;
@@ -110,7 +126,7 @@ body {
 .product-details .price {
     font-size: 1.2em;
     font-weight: bold;
-    color: #e63946;
+    color: #2F2F2F;
     margin-top: 5px;
 }
 
@@ -202,3 +218,9 @@ input[type="date"]:focus {
 br {
     margin-bottom: 15px; /* Spaziatura tra le righe */
 }
+
+img{
+    height: 200px;
+    max-width: 300px;
+}
+

@@ -53,8 +53,8 @@
 
                                     <div>
 
-                                        <p>'.$prodotto->getNome().'</p>
-                                        <p>'.$prodotto->getDescrizione().'</p>
+                                        <p class="nome">'.$prodotto->getNome().'</p>
+                                        <p class="descrizione">'.$prodotto->getDescrizione().'</p>
                                         <p>€ '.$prodotto->getPrezzo().'</p>
                                     
                                     </div>

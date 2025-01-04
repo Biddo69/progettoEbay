@@ -8,7 +8,7 @@
         header("Location: homepage.php?messaggio=Si è verificato un errore");
         exit;
     }   
-   $prodotto = getProdotto($_GET["id_prodotto"]);
+   $prodotto = getProdottoById($_GET["id_prodotto"]);
    $immagini = getFotoById_Prodotto($_GET["id_prodotto"]);
    $venditore = getUtente($prodotto->getId_utente());
 ?>
@@ -57,10 +57,15 @@
 
             // Ciclo per generare dinamicamente i <li> con le immagini
             foreach ($immagini as $immagine) {
-                echo '<li class="splide__slide"><img src="'.$immagine->getPath().'" alt="Descrizione immagine">
+                echo '<li class="splide__slide">
+                <div class="divImg">
+                <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
                 <button class="custom-arrow prev">‹</button>
-                <button class="custom-arrow next">›</button></li>';
+                <button class="custom-arrow next">›</button>
+                </div>
+                </li>';
             }
+            
             ?>
         </ul>
     </div>

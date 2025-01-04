@@ -44,3 +44,19 @@ td div {
 p {
     margin: 0;
 }
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.nome{
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.descrizione{
+    font-family: sans-serif;
+    font-size: 15px;
+}

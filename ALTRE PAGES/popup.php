@@ -1,5 +1,4 @@
 <?php
-    require_once("variabili.php");
     if(!isset($_SESSION))
         session_start();
     $path = "../PAGES/homepage.php";

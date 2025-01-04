@@ -50,8 +50,8 @@
 
                                 <div>
 
-                                    <p>'.$prodotto->getNome().'</p>
-                                    <p>'.$prodotto->getDescrizione().'</p>
+                                    <p class="nome">'.$prodotto->getNome().'</p>
+                                    <p class="descrizione">'.$prodotto->getDescrizione().'</p>
                                     <p>€ '.$prodotto->getPrezzo().'</p>
                                 
                                 </div>
@@ -61,7 +61,7 @@
                         {
                             echo '
                               <td>
-                                <form action="../ALTRE PAGES/gestioneCarrello.php" method="get">
+                                <form action="../ALTRE PAGES/gestioneCarrello.php" method="get" class="formBottoni">
                                     <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="id_prodotto">
                                     <button>Aggiungi al carrello</button>
 
@@ -69,7 +69,7 @@
                             </td>';
                             }
                             echo '<td>
-                                <form action="compra.php" method="get">
+                                <form action="compra.php" method="get" class="formBottoni">
                                     <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
                                     <button>Compra ora</button>
                                 </form>

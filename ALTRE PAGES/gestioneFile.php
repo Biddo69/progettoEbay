@@ -3,12 +3,7 @@
     require_once("../CLASSES/prodotto.php");
     require_once("../CLASSES/foto.php");
     require_once("../CLASSES/categoria.php");
-    $pathFileUtenti = "../CSV/utenti.csv";
-    $pathFileProdotti = "../CSV/prodotti.csv";
-    $pathFileCategorie = "../CSV/categorie.csv";
-    $pathFileCarrello = "../CSV/carrello.csv";
-    $pathFileFoto = "../CSV/foto.csv";
-    define('PATH_FILE_UTENTI', "../CSV/foto.csv");
+    define('PATH_FILE_UTENTI', "../CSV/utenti.csv");
     define('PATH_FILE_PRODOTTI', "../CSV/prodotti.csv");
     define('PATH_FILE_CATEGORIE', "../CSV/categorie.csv");
     define('PATH_FILE_CARRELLO', "../CSV/carrello.csv");
@@ -172,7 +167,7 @@
        
     }
 
-    function getProdotto($id_prodotto)
+    function getProdottoById($id_prodotto)
     {
         $allProdotti = getAllProdotti();
         foreach ($allProdotti as $prodotto) {
@@ -191,7 +186,7 @@
             if($riga[0] == $id_utente)
             {
                 //devo aggiungere al vettore il prodotto con lo stesso id_prodotto presente nel carrello
-                $carrello[] = getProdotto($riga[1]);
+                $carrello[] = getProdottoById($riga[1]);
 
             }
         }
@@ -210,21 +205,19 @@
 
     function scriviTuttiProdotti($contenuto)
     {
-        $pathFileProdotti = "../CSV/prodotti.csv";
-        file_put_contents($pathFileProdotti,"");
+        file_put_contents(PATH_FILE_PRODOTTI,"");
         foreach ($contenuto as $prodotto) {
             $riga = $prodotto->toCsv();
-            file_put_contents($pathFileProdotti,$riga."\r\n",FILE_APPEND);
+            file_put_contents(PATH_FILE_PRODOTTI,$riga."\r\n",FILE_APPEND);
         }
     }
 
     function scriviCarrello($carrello)
     {
-        $pathFileCarrello = "../CSV/carrello.csv";
-        file_put_contents($pathFileCarrello,"");
+        file_put_contents(PATH_FILE_CARRELLO,"");
         foreach ($carrello as $elemento) {
             $riga = $elemento[0].";".$elemento[1];
-            file_put_contents($pathFileCarrello,$riga."\r\n",FILE_APPEND);
+            file_put_contents(PATH_FILE_CARRELLO,$riga."\r\n",FILE_APPEND);
         }
     }
 

@@ -35,6 +35,23 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+li{
+    height: fit-content;
+    margin: auto;
+}
+
+img{
+    margin:auto;
+
+}
+
+.divImg{
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
+
+
 /* Frecce personalizzate */
 .custom-arrow {
     position: absolute;

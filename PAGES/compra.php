@@ -8,9 +8,13 @@
         header("Location: homepage.php");
         exit;
     }   
-   $prodotto = getProdotto($_GET["id_prodotto"]);
+   $prodotto = getProdottoById($_GET["id_prodotto"]);
    $immagini = getFotoById_Prodotto($_GET["id_prodotto"]);
-
+    if(isset($_SESSION["user"]))
+    {
+        $utente = $_SESSION["user"];
+    }
+    else
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +66,13 @@
 
                 // Ciclo per generare dinamicamente i <li> con le immagini
                 foreach ($immagini as $immagine) {
-                    echo '<li class="splide__slide"><img src="'.$immagine->getPath().'" alt="Descrizione immagine">
+                    echo '<li class="splide__slide">
+                    <div class="divImg">
+                    <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
                     <button class="custom-arrow prev">‹</button>
-                    <button class="custom-arrow next">›</button></li>';
+                    <button class="custom-arrow next">›</button>
+                    </div>
+                    </li>';
                 }
                 ?>
             </ul>
@@ -79,7 +87,7 @@
                             <h2>'.$prodotto->getNome().'</h2>
                             <p class="description">'.$prodotto->getDescrizione().'</p>
                             <p class="quantity">Quantità disponibile: '.$prodotto->getQuantità().'</p>
-                            <p class="price">€'.$prodotto->getPrezzo().'</p>
+                            <p class="price">Prezzo: €'.$prodotto->getPrezzo().'</p>
                     </div>';
                 
                 ?>
@@ -89,13 +97,13 @@
     </div>      
 
             
-    <form action="../ALTRE PAGES/gestionePagamento.php" method="get">
+    <form action="../ALTRE PAGES/gestionePagamento.php" method="post">
             <div>
                 <h2>Dati utente</h2>
-                Quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>"> <br>
-                Nome <input type="text" name="nome"> <br>
-                Cognome <input type="text" name="cognome"> <br>
-                Mail <input type="email" name="mail"> <br>
+                Quantità <input type="number" name="quantità" min="1" max="<?php echo $prodotto->getQuantità() ?>" value="1"> <br>
+                Nome <input type="text" name="nome" value="<?php echo $utente->getNome() ?? ''; ?>"> <br>
+                Cognome <input type="text" name="cognome" value="<?php echo $utente->getCognome() ?? ''; ?>"> <br>
+                Mail <input type="email" name="mail" value="<?php echo $utente->getMail() ?? ''; ?>"> <br>
                 Città <input type="text" name="città"> <br>
                 CAP <input type="text" name="cap"> <br>
                 Indirizzo <input type="text" name="indirizzo"> <br>
