@@ -18,8 +18,6 @@
         exit;
     }
 
-    //controlli vari
-
     $prodotto =getProdottoById($_POST["id_prodotto"]);
 
         //controllo se la quantità è corretta

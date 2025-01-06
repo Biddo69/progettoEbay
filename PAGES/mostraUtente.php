@@ -74,9 +74,10 @@
 
                             echo '
                               <td>
-                                    <form action="" method="post">
-                                        <button>Compra ora</button>
-                                    </form>
+                                    <form action="compra.php" method="get">                              
+                                    <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
+                                    <button>Compra ora</button>
+                                </form>
                                 </td>';
                           
                        

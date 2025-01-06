@@ -58,7 +58,7 @@ require_once("../ALTRE PAGES/gestioneFile.php");
 
 
    //controlla la lunghezza della descrizione
-    if(strlen($_POST["descrizione"]) > 100)
+    if(strlen($_POST["descrizione"]) > 150)
     {
         $_SESSION["risposta"] = "Descrizione troppo lunga";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
@@ -99,18 +99,6 @@ require_once("../ALTRE PAGES/gestioneFile.php");
         }
         $cont++;
     }
-    /*for ($i=0; $i < count($oldPath); $i++) { 
-        move_uploaded_file($oldPath[$i],$newPath[$i]);
-        $foto = new foto($id_prodotto,$newPath[$i]);
-        $stringa = $foto->toCSV();
-        if(!addToFile(PATH_FILE_FOTO,$stringa))
-        {
-            $_SESSION["risposta"] = "Si è verificato un errore";
-            $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
-            header("Location: ../PAGES/aggiungiProdotto.php");
-            exit;
-        }
-    }*/
     $stringa = $prodotto->toCsv();
     if(!addToFile(PATH_FILE_PRODOTTI,$stringa))
     {

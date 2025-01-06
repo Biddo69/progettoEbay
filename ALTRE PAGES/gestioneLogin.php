@@ -1,8 +1,8 @@
 <?php
+    require_once("gestioneFile.php");    
     if(!isset($_SESSION))
         session_start();
 
-    require_once("gestioneFile.php");    
 
     //controllo se i parametri esistono    
     if(!isset($_POST["mail"],$_POST["password"]))
@@ -20,7 +20,7 @@
 
     //controllo se sono giuste le credenziali
     $utenti = getAllUtenti();
-    foreach ($utenti as $user) {    //PER ORA È CASE SENSITIVE, MAGARI DA CAMBIARE
+    foreach ($utenti as $user) { 
         if($user->isEqual($_POST["mail"],$_POST["password"]))
         {
             $_SESSION["user"] = $user;

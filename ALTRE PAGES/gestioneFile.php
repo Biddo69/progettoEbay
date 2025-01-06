@@ -13,7 +13,7 @@
     function getAllUtenti()
     {
         $utenti = [];
-        $contenuto = file_get_contents("../CSV/utenti.csv");
+        $contenuto = file_get_contents(PATH_FILE_UTENTI);
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
@@ -29,7 +29,7 @@
     function getAllProdotti()
     {
         $prodotti = [];
-        $contenuto = file_get_contents("../CSV/prodotti.csv");
+        $contenuto = file_get_contents(PATH_FILE_PRODOTTI);
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
@@ -44,7 +44,7 @@
     function getAllFoto()
     {
         $foto = [];
-        $contenuto = file_get_contents("../CSV/foto.csv");
+        $contenuto = file_get_contents(PATH_FILE_FOTO);
         $righe = explode("\r\n",$contenuto);
         foreach ($righe as $riga) {
             if(!empty($riga))
@@ -246,18 +246,7 @@
             }
         }
         scriviFoto($foto);
-    }
-
-    /*function getCostoCarrello($id_utente)
-    {
-        //non ha molto senso perchè io non specifico la quantità
-        $carrello = getCarrelloByUtente($id_utente);
-        $prezzo = 0;
-        foreach ($carrello as $prodotto) {
-            $prezzo += $prodotto->getPrezzo();
-        }
-        return $prezzo;
-    }*/
+    } 
 
     function getUtente($id_utente)
     {
