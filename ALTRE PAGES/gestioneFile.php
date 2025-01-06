@@ -199,7 +199,7 @@
 
         if(count($prodotti) < 5)
             return $prodotti;
-        $prodotti = array_splice($prodotti,0,count($prodotti) - 5);
+        $prodotti = array_slice($prodotti,count($prodotti) - 5);
         return $prodotti;
     }
 

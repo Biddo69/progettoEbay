@@ -8,11 +8,19 @@
         header("Location: homepage.php");
         exit;
     }   
+
    $prodotto = getProdottoById($_GET["id_prodotto"]);
    $immagini = getFotoById_Prodotto($_GET["id_prodotto"]);
     if(isset($_SESSION["user"]))
     {
         $utente = $_SESSION["user"];
+        if($prodotto->getId_utente() == $utente->getId_utente())
+        {
+            $_SESSION["risposta"] = "Non puoi accedere a questa pagina";
+            header("Location: homepage.php");
+            exit;
+        }
+
     }
     else
         $utente = new utente("","","","","","","");
