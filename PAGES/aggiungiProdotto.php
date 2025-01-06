@@ -19,7 +19,10 @@
 <body>
 <?php
         if(isset($_SESSION["risposta"]))
+        {   
             require_once("../ALTRE PAGES/popup.php");
+            exit;
+        }
    ?>
     <div class="container">
         <h1>Aggiungi un prodotto</h1>

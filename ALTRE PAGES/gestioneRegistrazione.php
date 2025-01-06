@@ -15,7 +15,7 @@
         exit;
     }
 
-    //MAGARI ALTRI CONTROLLI
+  
 
     if($_POST["password"] != $_POST["confermaPassword"])
     {

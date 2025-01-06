@@ -18,7 +18,10 @@
 <body>
    <?php
         if(isset($_SESSION["risposta"]))
+        {
             require_once("../ALTRE PAGES/popup.php");
+            exit;
+        }
         require_once("top.php");
    ?>
   
@@ -32,8 +35,9 @@
         if(count($prodotti) > 0)
         {
             echo ' <h3>Ultimi prodotti messi in vendita</h3>';
+            echo '<table>';
             for ($i=count($prodotti) - 1; $i >=0; $i--) { 
-                echo '<table>';
+                
                 $immagini = getFotoById_Prodotto($prodotti[$i]->getId_prodotto());
                 echo '<tr>
                         <div>
@@ -53,26 +57,29 @@
                             {
                                 echo '
                                   <td>
-                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="get" class="formBottoni">
+                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="post" class="formBottoni">
                                         <input type="hidden" value="'.$prodotti[$i]->getId_prodotto().'" name="id_prodotto">
                                         <button>Aggiungi al carrello</button>
     
                                     </form>
                                 </td>';
-                                }
-                                echo '<td>
-                                    <form action="compra.php" method="get" class="formBottoni">
-                                        <input type="hidden" name="id_prodotto" value="'.$prodotti[$i]->getId_prodotto().'">
-                                        <button>Compra ora</button>
-                                    </form>
-                                </td>
+                            }
+                            echo '
+                            <td>
+                                <form action="compra.php" method="get" class="formBottoni">
+                                    <input type="hidden" name="id_prodotto" value="'.$prodotti[$i]->getId_prodotto().'">
+                                    <button>Compra ora</button>
+                                </form>
+                            </td>
                     
-                 </div>
-                </tr>';
-        }
-       
+                        </div>
+                    </tr>';
+                
+              
+             }
+             echo '  </table>';
         }        
     ?>
-    </table>
+   
 </body>
 </html>

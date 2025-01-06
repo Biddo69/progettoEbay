@@ -2,12 +2,16 @@
     require_once("../ALTRE PAGES/gestioneFile.php");
     if(!isset($_SESSION))
         session_start();
+
+
+    //OGNI TANTO DA PROBLEMI, QUINDI LO TOLGO E AGGIUNGO ALTRO    
     
-    if(!isset($_POST["categoria"],$_POST["cerca"]))
+    /*if(!isset($_POST["categoria"],$_POST["cerca"]))
     {
         header("Location: ../PAGES/homepage.php?messaggio=Si è verificato un errore");
         exit;
-    } 
+    }*/
+
     if(isset($_SESSION["user"]))
     {
         $utente = $_SESSION["user"];
@@ -16,8 +20,15 @@
     else
         $id_utente = -1;
     
-    $prodotti = getAllProdottiNotFromUtente($id_utente,$_POST["cerca"],$_POST["categoria"]);
-    
+
+    if(!isset($_POST["categoria"]) && !isset($_POST["cerca"]))
+        $prodotti = getAllProdottiNotFromUtente($id_utente,"","");
+    else if(!isset($_POST["categoria"]))
+        $prodotti = getAllProdottiNotFromUtente($id_utente,$_POST["cerca"],"");
+    else if(!isset($_POST["cerca"]))
+        $prodotti = getAllProdottiNotFromUtente($id_utente, "",$_POST["categoria"]);
+    else
+        $prodotti = getAllProdottiNotFromUtente($id_utente,$_POST["cerca"],$_POST["categoria"]);    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,13 +41,18 @@
 <body>
   
    <?php
+        if(isset($_SESSION["risposta"]))
+        {
+            require_once("../ALTRE PAGES/popup.php");
+            exit;
+        }
         require_once("top.php");
 
             echo '<table>';
             foreach ($prodotti as $prodotto) {
                 $immagini = getFotoById_Prodotto($prodotto->getId_prodotto());
-                echo '<tr>
-                   
+                echo '
+                    <tr>   
                         <div>
                             <td> 
                                 <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'"> <img src="'.$immagini[0]->getPath().'" alt=""> </a>
@@ -54,7 +70,7 @@
                             {
                                 echo '
                                   <td>
-                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="get">
+                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="post">
                                         <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="id_prodotto">
                                         <button>Aggiungi al carrello</button>
                                     </form>
@@ -64,16 +80,14 @@
                             }
 
                             echo '
-                                <td>
-                                    <form action="" method="post">
-                                        <button>Compra ora</button>
-                                    </form>
-                                </td>';
-                          
-                       
-                    
-                echo '  </div>
-                </tr>';
+                            <td>
+                                <form action="compra.php" method="get">                              
+                                    <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
+                                    <button>Compra ora</button>
+                                </form>
+                            </td>
+                        </div>
+                    </tr>';
             }
             echo '</table>';
 

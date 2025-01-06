@@ -57,6 +57,7 @@
         if(isset($_SESSION["risposta"]))
         {
             require_once("../ALTRE PAGES/popup.php");
+            exit;
         }
     ?>
    

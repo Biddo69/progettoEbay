@@ -13,8 +13,6 @@ require_once("../ALTRE PAGES/gestioneFile.php");
     //controllo se i parametri esistono
     if(!isset($_POST["nome"],$_POST["descrizione"],$_POST["prezzo"],$_POST["quantità"],$_POST["categoria"]))
     {
-     
-
         $_SESSION["risposta"] = "Si è verificato un errore";
         $_SESSION["risposta_path"] = "../PAGES/aggiungiProdotto.php";
         header("Location: ../PAGES/aggiungiProdotto.php");

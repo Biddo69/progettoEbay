@@ -248,7 +248,7 @@
         scriviFoto($foto);
     }
 
-    function getCostoCarrello($id_utente)
+    /*function getCostoCarrello($id_utente)
     {
         //non ha molto senso perchè io non specifico la quantità
         $carrello = getCarrelloByUtente($id_utente);
@@ -257,7 +257,7 @@
             $prezzo += $prodotto->getPrezzo();
         }
         return $prezzo;
-    }
+    }*/
 
     function getUtente($id_utente)
     {

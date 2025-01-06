@@ -4,10 +4,9 @@
         session_start();
     if(!isset($_POST["quantità"],$_POST["nome"],$_POST["cognome"],$_POST["mail"],$_POST["città"],$_POST["cap"],$_POST["indirizzo"],$_POST["codice"],$_POST["cvv"],$_POST["scadenza"]))
     {
-        $_SESSION["risposta"] = "Mancano alcuni dati per completare il pagamento";
-        $_SESSION["risposta_path"] = "../PAGES/compra.php";
+        $_SESSION["risposta"] = "Si è verificato un errore";
         $_SESSION["id_prodotto"] = $_POST["id_prodotto"];
-        header("Location: ../PAGES/compra.php?id_prodotto=".$_POST["id_prodotto"]);
+        header("Location: ../PAGES/homepage.php");
         exit;
     }
     if(empty($_POST["quantità"]) || empty($_POST["nome"]) || empty($_POST["cognome"]) || empty($_POST["mail"]) || empty($_POST["città"]) || empty($_POST["cap"]) || empty($_POST["indirizzo"]) || empty($_POST["codice"]) || empty($_POST["cvv"]) || empty($_POST["scadenza"]))

@@ -9,7 +9,7 @@
     }
     $utente = $_SESSION["user"];
     $carrello = getCarrelloByUtente($utente->getId_utente());
-    $prezzo = getCostoCarrello($utente->getId_utente());
+    //$prezzo = getCostoCarrello($utente->getId_utente());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,10 @@
 <body>
 <?php
         if(isset($_SESSION["risposta"]))
+        {   
             require_once("../ALTRE PAGES/popup.php");
+            exit;
+        }
    ?>
     <table>
         <?php
@@ -38,18 +41,14 @@
                                 </td>
                                 <td>
                                     <a href="mostraProdotto.php?id_prodotto='.$prodotto->getId_prodotto().'">
-        
                                         <div>
-        
                                             <p class="nome">'.$prodotto->getNome().'</p>
                                             <p class="descrizione">'.$prodotto->getDescrizione().'</p>
-                                            <p>€ '.$prodotto->getPrezzo().'</p>
-                                        
+                                            <p>€ '.$prodotto->getPrezzo().'</p>   
                                         </div>
                                     </a>
-                                </td>';
-                               
-                                echo '<td>
+                                </td>
+                                <td>
                                     <form action="compra.php" method="get" class="formBottoni">
                                         <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
                                         <button>Compra ora</button>
@@ -64,7 +63,6 @@
                             </div>
                     </tr>';
                 }
-                echo "Prezzo: ".$prezzo;
             }
             else
             {

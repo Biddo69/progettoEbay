@@ -57,7 +57,7 @@
   
   <form action="ricerca.php" method="post">
         <input type="text" name="cerca" placeholder="Cerca un prodotto...">
-        <button>Cerca</button> <!-- magari da sostituire con altro -->
+        <button>Cerca</button> 
         <select name="categoria">
             <option value="">Tutte le categorie</option>
             <?php

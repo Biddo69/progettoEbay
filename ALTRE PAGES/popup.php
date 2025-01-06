@@ -1,6 +1,12 @@
 <?php
     if(!isset($_SESSION))
         session_start();
+    if(!isset($_SESSION["risposta"]))
+    {
+        $_SESSION["risposta"] = "Non puoi accedere a questa pagina";
+        header("Location: ../PAGES/homepage.php");
+        exit;
+    }
     $path = "../PAGES/homepage.php";
     if(isset($_SESSION["risposta_path"]))
     {
@@ -20,7 +26,6 @@
     <link rel="stylesheet" href="../STYLE/popup.css">
 </head>
 <body>
-    <!-- Sovrapposizione -->
     <div id="modalOverlay" class="overlay">
         <div class="modal">
             <button class="close-icon" id="closeIcon">&times;</button>

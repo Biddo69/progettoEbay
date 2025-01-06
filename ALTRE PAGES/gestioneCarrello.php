@@ -5,7 +5,7 @@
 
     if(!isset($_SESSION["user"]))
     {
-        header("Location: login.php?messaggio=Devi essere autenticato per accedere a questa pagina");
+        header("Location: ../PAGES/login.php?messaggio=Devi essere autenticato per accedere a questa pagina");
         exit;
     } 
     $utente = $_SESSION["user"];
@@ -30,11 +30,10 @@
         exit;
     }    
 
-    if(!isset($_GET["id_prodotto"]))
+    if(!isset($_POST["id_prodotto"]))
     {
         $_SESSION["risposta"] = "Si è verificato un errore";
-        $_SESSION["risposta_path"] = "../PAGES/ricerca.php";
-        header("Location: ../PAGES/ricerca.php");
+        header("Location: ../PAGES/homepage.php");
         exit;
     }
     $utente = $_SESSION["user"];
@@ -43,7 +42,7 @@
     //bisogna controllare se è già presente nel carrello
     $carrello = getCarrelloByUtente($id_utente);
     foreach ($carrello as $prodotto) {
-        if($prodotto->getId_prodotto() == $_GET["id_prodotto"])
+        if($prodotto->getId_prodotto() == $_POST["id_prodotto"])
         {
             $_SESSION["risposta"] = "Prodotto già presente nel carrello";
             header("Location: ../PAGES/homepage.php");
@@ -52,7 +51,7 @@
     }
 
 
-    if(addToFile(PATH_FILE_CARRELLO,$id_utente.";".$_GET["id_prodotto"]))
+    if(addToFile(PATH_FILE_CARRELLO,$id_utente.";".$_POST["id_prodotto"]))
     {
         $_SESSION["risposta"] = "Prodotto aggiunto al carrello";
         header("Location: ../PAGES/homepage.php");
