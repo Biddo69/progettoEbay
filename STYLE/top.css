@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spaziatura tra i bottoni */
+    margin: 20px 0;
+}
+
+.button-container form {
+    margin: 0;
+}
+
+.button-container button {
+    background-color: #3a8bfd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #3074d9;
+}

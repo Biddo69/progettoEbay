@@ -9,6 +9,17 @@
         header("Location: homepage.php");
         exit;
     }    
+    if(isset($_SESSION["user"]))
+    {
+        //se l'utente loggato è uguale a l'id dell'utente inviato nella get vuol dire che deve vedere la sua pagina
+        $utente = $_SESSION["user"];
+        if($utente->getId_utente() == $_GET["id_utente"])
+            $stessoUtente = true;
+        else
+            $stessoUtente = false;
+    }
+    else
+        $stessoUtente = false;
     $utente = getUtente($_GET["id_utente"]);
     $prodotti = getProdottiFromUtente($_GET["id_utente"]);
 ?>
@@ -21,6 +32,13 @@
     <link rel="stylesheet" href="../STYLE/utente.css">
 </head>
 <body>
+    <?php
+        if(isset($_SESSION["risposta"]))
+        {
+            require_once("../ALTRE PAGES/popup.php");
+            exit;
+        }
+    ?>
     <div id="profile-container">
         <div id="profile-header">
             <img src="<?php echo $utente->getFoto_Profilo(); ?>" alt="Foto Profilo" id="profile-picture">
@@ -58,27 +76,43 @@
                                     </div>
                                 </a>
                             </td>';
-                            if(isset($_SESSION["user"]))
+                            if($stessoUtente)
                             {
                                 echo '
-                                  <td>
-                                    <form action="../ALTRE PAGES/gestioneCarrello.php" method="post">
-                                        <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="id_prodotto">
-                                        <button>Aggiungi al carrello</button>
-
-                                    </form>
-                                </td>
-
-                               ';
+                                <td>
+                                  <form action="../ALTRE PAGES/gestioneAggiungiProdotto.php" method="post">
+                                    <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="eliminaProdotto">
+                                    <input type="hidden" value="'.$utente->getId_utente().'" name="id_utente">
+                                    <button>Elimina prodotto</button>
+                                  </form>
+                              </td>
+                             ';
                             }
-
-                            echo '
-                              <td>
-                                    <form action="compra.php" method="get">                              
-                                    <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
-                                    <button>Compra ora</button>
-                                </form>
-                                </td>';
+                            else
+                            {
+                                if(isset($_SESSION["user"]))
+                                {
+                                    echo '
+                                      <td>
+                                        <form action="../ALTRE PAGES/gestioneCarrello.php" method="post">
+                                            <input type="hidden" value="'.$prodotto->getId_prodotto().'" name="id_prodotto">
+                                            <button>Aggiungi al carrello</button>
+    
+                                        </form>
+                                    </td>
+    
+                                   ';
+                                }
+    
+                                echo '
+                                  <td>
+                                        <form action="compra.php" method="get">                              
+                                        <input type="hidden" name="id_prodotto" value="'.$prodotto->getId_prodotto().'">
+                                        <button>Compra ora</button>
+                                    </form>
+                                    </td>';
+                            }
+                           
                           
                        
                     

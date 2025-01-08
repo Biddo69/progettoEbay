@@ -9,6 +9,39 @@ require_once("../ALTRE PAGES/gestioneFile.php");
         exit;
     }
 
+    //controllo se devo eliminare il prodotto
+    if(isset($_POST["eliminaProdotto"]))
+    {
+        $prodotti = getAllProdotti();
+        for ($i=0; $i < count($prodotti); $i++) { 
+            if($prodotti[$i]->getId_prodotto() == $_POST["eliminaProdotto"])
+            {
+                $id_prodotto = $prodotti[$i]->getId_prodotto();
+                $carrello = getAllCarrello();
+    
+                //controllo il carrello
+                $nuovoCarrello = [];
+                for ($j=0; $j < count($carrello); $j++) { 
+                    if($carrello[$j][1] != $_POST["eliminaProdotto"])
+                        $nuovoCarrello[] = $carrello[$j];
+                }
+                //elimino il prodotto dal file
+                array_splice($prodotti,$i,1); 
+                deleteFotoById_prodotto($id_prodotto);
+                
+    
+                scriviTuttiProdotti($prodotti);
+                scriviCarrello($nuovoCarrello);
+            
+                $_SESSION["risposta"] = "Prodotto eliminato con successo";
+                $_SESSION["risposta_path"] = "../PAGES/mostraUtente.php";
+                $_SESSION["id_utente"] = $_POST["id_utente"];
+                header("Location: ../PAGES/mostraUtente.php?id_utente=".$_POST["id_utente"]);
+                exit;
+            }
+        }
+    }
+
 
     //controllo se i parametri esistono
     if(!isset($_POST["nome"],$_POST["descrizione"],$_POST["prezzo"],$_POST["quantità"],$_POST["categoria"]))

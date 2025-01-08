@@ -13,10 +13,6 @@
 
     if(isset($_POST["eliminaProdotto"]))
     {
-        //ottengo tutto il carrello
-        //controllo se è uguale l'id dell'utente e del prodotto
-        //salvo quello che mi interessa
-        //riscrivo il file
         $carrello = getAllCarrello();
         $nuovoCarrello = [];
         foreach ($carrello as $riga) {

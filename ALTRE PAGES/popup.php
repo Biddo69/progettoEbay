@@ -15,6 +15,8 @@
     }
     if(isset($_SESSION["id_prodotto"]))
         $valore= $_SESSION["id_prodotto"];
+    if(isset($_SESSION["id_utente"]))
+        $valoreUtente= $_SESSION["id_utente"];
 
 ?>
 <!DOCTYPE html>
@@ -42,6 +44,11 @@
                         {
                             echo '<input type="hidden" name="id_prodotto" value="'.$valore.'">';
                             unset($_SESSION["id_prodotto"]);
+                        }
+                        if(isset($_SESSION["id_utente"]))
+                        {
+                            echo '<input type="hidden" name="id_utente" value="'.$valoreUtente.'">';
+                            unset($_SESSION["id_utente"]);
                         }
                     ?>
                     <button class="close-btn" id="closeModal">Close</button>
