@@ -24,8 +24,9 @@
             exit;
         }
    ?>
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
     <div class="container">
-        <h1>Aggiungi un prodotto</h1>
+        <h2>Aggiungi un prodotto</h2>
         <form action="../ALTRE PAGES/gestioneAggiungiProdotto.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nome">Nome:</label>

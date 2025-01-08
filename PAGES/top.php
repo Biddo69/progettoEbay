@@ -21,7 +21,7 @@
 
 </head>
 <body>
-    <h1>Sito compravendita</h1>  <br>
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
       
     <?php
         if(!isset($_SESSION["user"]))

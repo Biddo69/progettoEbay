@@ -39,6 +39,7 @@
             exit;
         }
     ?>
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
     <div id="profile-container">
         <div id="profile-header">
             <img src="<?php echo $utente->getFoto_Profilo(); ?>" alt="Foto Profilo" id="profile-picture">

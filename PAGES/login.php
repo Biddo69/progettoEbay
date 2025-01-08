@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="../STYLE/login.css">
 </head>
 <body>
-    <?php   //questa riga da modifare in modo migliore graficamente
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
+
+    <?php 
         if(isset($_GET["messaggio"]))
-            echo "<h1>".$_GET["messaggio"]."</h1>";
+            echo "<h2>".$_GET["messaggio"]."</h2>";
     ?>
     <form action="../ALTRE PAGES/gestioneLogin.php" method="post">
         <table>

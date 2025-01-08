@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="../STYLE/registrati.css">
 </head>
 <body>
+<a href="homepage.php"><h1>Ebax</h1></a>  <br>
+
     <?php   //questa riga da modifare in modo migliore graficamente
         if(isset($_GET["messaggio"]))
-            echo "<h1>".$_GET["messaggio"]."</h1>";
+            echo "<h2>".$_GET["messaggio"]."</h2>";
     ?>
+
     <form action="../ALTRE PAGES/gestioneRegistrazione.php" method="post" enctype="multipart/form-data">
         <table>
             <tr>

@@ -27,6 +27,7 @@
             exit;
         }
    ?>
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
     <table>
         <?php
             if(count($carrello) > 0)
@@ -66,7 +67,7 @@
             }
             else
             {
-                echo '<h1>Nessun prodotto presente nel carrello</h1>';
+                echo '<h2>Nessun prodotto presente nel carrello</h2>';
             }
            
 

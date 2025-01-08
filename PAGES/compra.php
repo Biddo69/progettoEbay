@@ -68,7 +68,8 @@
             exit;
         }
     ?>
-   
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
+
    <div id="carousel" class="splide">
         <div class="splide__track">
             <ul class="splide__list">

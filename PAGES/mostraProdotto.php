@@ -49,28 +49,29 @@
 
 </head>
 <body>
+    <a href="homepage.php"><h1>Ebax</h1></a>  <br>
 
-<div id="carousel" class="splide">
-    <div class="splide__track">
-        <ul class="splide__list">
-            <?php
+    <div id="carousel" class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <?php
 
-                // Ciclo per generare dinamicamente i <li> con le immagini
-                foreach ($immagini as $immagine) {
-                    echo '<li class="splide__slide">
-                        <div class="divImg">
-                            <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
-                            <button class="custom-arrow prev">‹</button>
-                            <button class="custom-arrow next">›</button>
-                        </div>
-                    </li>';
-                }
-            
-            ?>
-        </ul>
+                    // Ciclo per generare dinamicamente i <li> con le immagini
+                    foreach ($immagini as $immagine) {
+                        echo '<li class="splide__slide">
+                            <div class="divImg">
+                                <img src="'.$immagine->getPath().'" alt="Descrizione immagine">
+                                <button class="custom-arrow prev">‹</button>
+                                <button class="custom-arrow next">›</button>
+                            </div>
+                        </li>';
+                    }
+                
+                ?>
+            </ul>
+        </div>
+        
     </div>
-    
-</div>
     <div id="productContainer">
         <div id="product">      
             <div>
